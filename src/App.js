@@ -76,30 +76,33 @@ class App extends Component {
     let h3idx = this.getH3Index()
 
     return (
-      <div>
-        <MyMapComponent
-          isMarkerShown
-          googleMapURL="https://maps.googleapis.com/maps/api/js?key=&v=3.exp&libraries=geometry,drawing,places"
-          loadingElement={<div style={{ height: `100%` }} />}
-          containerElement={<div style={{ height: `500px`, width: `70%`, float: 'left' }} />}
-          mapElement={<div style={{ height: `100%` }} />}
-          hexagons= {h3KRing(h3idx, this.state.kringSize)}
-        />        
-      <div className="my-form" style={{float: 'right', paddingRight: '20px'}}>
-      <form>
-          <label style={{paddingRight: `30px`}}>
-            Resolution:
-          </label>
-          <NumericInput className="res_input" min={0} max={30} value={this.state.resolution} onChange={this.handleInputChangeResolution}/>
-        </form>
-        <form>
-          <label style={{paddingRight: `30px`}}>
-            Ring:
-          </label>
-          <NumericInput className="num_input" min={0} max={100} value={this.state.kringSize} onChange={this.handleInputChangekRing}/>
-        </form>
-      </div>
-      
+      <div style={{ height: `100%`}} className='d-flex'>
+        <div style={{ height: `100%`, width: `100%`}} className='p-2'>
+          <MyMapComponent
+            isMarkerShown
+            googleMapURL="https://maps.googleapis.com/maps/api/js?key=&v=3.exp&libraries=geometry,drawing,places"
+            loadingElement={<div style={{ height: `100%` }} />}
+            containerElement={<div style={{ height: `100%`, width: `100%`}} />}
+            mapElement={<div style={{ height: `100%` }} />}
+            hexagons= {h3KRing(h3idx, this.state.kringSize)}
+          />   
+        </div>
+        <div style={{paddingRight: '20px'}} className='p-2'>
+          <form>
+            <div className='form-group'>
+              <label>
+                Resolution:
+              </label>
+              <NumericInput className="res_input form-control" min={0} max={30} value={this.state.resolution} onChange={this.handleInputChangeResolution} />
+            </div>
+            <div className='form-group'>
+              <label>
+                Ring:
+              </label>
+              <NumericInput className="num_input form-control" min={0} max={100} value={this.state.kringSize} onChange={this.handleInputChangekRing} />
+            </div>
+          </form>
+        </div>
       </div>
     );
   }
